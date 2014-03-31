@@ -13,8 +13,14 @@
 *exit- exit out of program
 *puts "\e[H\e[2j" - clear
 =end
+require './rolodex'
+require './contact'
+
 class Runner
-  
+  def initialize
+    @rolodex = Rolodex.new  
+  end
+
   def main_menu
     puts "\nCRM Main Menu:\n\n"
     puts "1. Add a new contact."
@@ -28,16 +34,16 @@ class Runner
   def run
     done = true
     while done == true
-    main_menu
-    user_input = gets.chomp.to_i
+      main_menu
+      user_input = gets.chomp.to_i
       if user_input == 1
         add_contact
       elsif user_input == 2
         modify_contact
       elsif user_input == 3
-        display_all
+        display_all_contacts
       elsif user_input == 4
-        display_attribute
+        display_contacts_by_attribute
       elsif user_input == 5
         delete_contact
       elsif user_input == 6
@@ -47,6 +53,33 @@ class Runner
         puts "Invalid entry. Please select valid input(1-6)."
       end
     end
+  end
+  
+  def add_contact
+
+    puts "Enter customer's first name:"
+    first_name = gets.chomp.to_s.capitalize
+    puts "Enter customer's last Name:"
+    last_name = gets.chomp.to_s.capitalize
+    puts "Enter customer's email:"
+    email = gets.chomp
+    puts "Enter notes:"
+    notes = gets.chomp
+    @rolodex.create_contact(first_name, last_name, email, notes) #method in rolodex
+  
+  end
+  
+  def modify_contact
+  end
+  
+  def display_all_contacts
+    @rolodex.display_all_contacts
+  end
+  
+  def display_contacts_by_attribute
+  end
+  
+  def delete_contact
   end
 end
 

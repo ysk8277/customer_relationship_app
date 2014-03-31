@@ -16,6 +16,12 @@ class Contact
 
 attr_accessor :id, :first_name, :last_name, :email, :notes
 
+def initialize 
 
+end
+
+def to_s
+  "ID: #{@id}\nFirst Name: #{@first_name}\nLast Name: #{@last_name}\nEmail: #{@email}\nNotes: #{@notes}"
+end
 
 end
