@@ -28,7 +28,7 @@ class Runner
     puts "3. Display all contacts"
     puts "4. Display all contacts by attribute"
     puts "5. Delete a contact"
-    puts "6. Exit.\n\n"
+    puts "6. Exit CRM\n\n"
     puts "Press 1-6 to continue:" 
   end
 
@@ -57,7 +57,8 @@ class Runner
         puts "\n\nGood Bye!\n\n"
         done = true
       else 
-        puts "Invalid entry. Please select valid input(1-6)."
+        puts "\e[H\e[2J"
+        puts "Invalid entry. Please select valid input(1-6).\n\n"
       end
     end
   end
