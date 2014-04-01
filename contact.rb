@@ -14,14 +14,26 @@
 =end
 class Contact
 
+@@counter = 1000
+
 attr_accessor :id, :first_name, :last_name, :email, :notes
 
 def initialize 
+  @id = Contact.get_id
+  @first_name = ""
+  @last_name = ""
+  @notes = ""
+  @email = ""
 
 end
 
 def to_s
-  "ID: #{@id}\nFirst Name: #{@first_name}\nLast Name: #{@last_name}\nEmail: #{@email}\nNotes: #{@notes}"
+  "ID: #{@id}\nFirst Name: #{@first_name}\nLast Name: #{@last_name}\nEmail: #{@email}\nNotes: #{@notes}\n\n"
+end
+
+def self.get_id
+  @@counter += 1
+  @@counter
 end
 
 end

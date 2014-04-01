@@ -56,20 +56,19 @@ class Runner
   end
   
   def add_contact
-
     puts "Enter customer's first name:"
-    first_name = gets.chomp.to_s.capitalize
+    first_name = gets.chomp.to_s.downcase.capitalize
     puts "Enter customer's last Name:"
-    last_name = gets.chomp.to_s.capitalize
+    last_name = gets.chomp.to_s.downcase.capitalize
     puts "Enter customer's email:"
     email = gets.chomp
     puts "Enter notes:"
     notes = gets.chomp
-    @rolodex.create_contact(first_name, last_name, email, notes) #method in rolodex
-  
+    @rolodex.create_contact(first_name, last_name, email, notes) 
   end
   
   def modify_contact
+    @rolodex.modify_contact
   end
   
   def display_all_contacts
@@ -77,6 +76,7 @@ class Runner
   end
   
   def display_contacts_by_attribute
+    @rolodex.display_contacts_by_attribute
   end
   
   def delete_contact
