@@ -7,6 +7,7 @@ class Runner
   end
 
   def main_menu
+    sleep (0.2)
     puts "---- CRM Main Menu ----\n\n"
     puts "1. Add a new contact"
     puts "2. Modify an existing contact"
@@ -42,7 +43,6 @@ class Runner
         puts "\e[H\e[2J"
         sleep (0.2)
         puts "Invalid entry. Please select valid input(1-5).\n\n"
-        sleep (0.2)
       end
     end
   end

@@ -36,6 +36,7 @@ class Rolodex
   end
 
   def modify_contact_attribute
+    sleep (0.2)
     puts "\nSelect attribute to change:\n\n"
     puts "1. First name"
     puts "2. Last name"
@@ -64,7 +65,6 @@ class Rolodex
     else 
       sleep (0.2)
       puts "Invalid entry."
-      sleep (0.2)
       modify_contact_attribute
     end
   end
@@ -176,7 +176,6 @@ class Rolodex
       puts "\e[H\e[2J" 
       sleep (0.2)
       puts "\nContact deleted...\n\n"
-      sleep (0.2)
     elsif user_input =="n"
       modify_contact_attribute
     else
@@ -194,6 +193,82 @@ class Rolodex
   end
 
   def display_contacts_by_attribute
+    sleep (0.2)
+    puts "\nSelect attribute to display:\n\n"
+    puts "1. First name"
+    puts "2. Last name"
+    puts "3. Email"
+    puts "4. ID"
+    puts "5. Back to Main menu\n\n"
+    user_input = gets.chomp.to_i
+    if user_input == 1
+      display_by_first_name
+    elsif user_input == 2
+      display_by_last_name
+    elsif user_input == 3
+      display_by_email
+    elsif user_input == 4
+      display_by_id
+    elsif user_input == 5
+      puts "\e[H\e[2J"
+      return
+    else 
+      sleep (0.2)
+      puts "Invalid entry."
+      display_contacts_by_attribute
+    end
+  end
+
+  def display_by_first_name
+    puts "Enter first name:"
+    user_input = gets.chomp.to_s.downcase.capitalize
+    puts "\e[H\e[2J"
+    puts "Found following result(s):"
+    @contacts.each do |contact|
+      if contact.first_name == user_input
+        puts contact
+      end
+    end
+    puts ""
+  end
+
+  def display_by_last_name
+    puts "Enter last name:"
+    user_input = gets.chomp.to_s.downcase.capitalize
+    puts "\e[H\e[2J"
+    puts "Found following results:"
+    @contacts.each do |contact|
+      if contact.last_name == user_input
+        puts contact
+      end
+    end
+    puts ""
+  end
+
+  def display_by_email
+    puts "Enter email:"
+    user_input = gets.chomp.to_s
+    puts "\e[H\e[2J"
+    puts "Found following results:"
+    @contacts.each do |contact|
+      if contact.email == user_input
+        puts contact
+      end
+    end
+    puts ""
+  end
+
+  def display_by_id
+    puts "Enter ID:"
+    user_input = gets.chomp.to_i
+    puts "\e[H\e[2J"
+    puts "Found following results:"
+    @contacts.each do |contact|
+      if contact.id == user_input
+        puts contact
+      end
+    end
+    puts ""
   end
 
 end
