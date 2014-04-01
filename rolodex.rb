@@ -15,11 +15,10 @@ class Rolodex
     puts contact
     sleep (0.4)
     puts "\nNew contact created...\n\n"
-    sleep (0.4)
   end
   
-  def modify_contact   #need validation of input
-    puts "Please enter customer ID:"
+  def modify_contact   #validation of input ID
+    puts "Enter contact ID:"
     @id = gets.chomp.to_i
     
     @contacts.each do |contact|
@@ -36,13 +35,14 @@ class Rolodex
   end
 
   def modify_contact_attribute
-    puts "\nPlease select attribute to change:\n\n"
+    puts "\nSelect attribute to change:\n\n"
     puts "1. First name"
     puts "2. Last name"
     puts "3. Email"
     puts "4. Notes"
     puts "5. Modify another contact"
-    puts "6. Back to Main menu\n\n"
+    puts "6. Delete a contact"   
+    puts "7. Back to Main menu\n\n"
     user_input = gets.chomp.to_i
     if user_input == 1
       modify_first_name
@@ -56,17 +56,20 @@ class Rolodex
       puts "\e[H\e[2J"
       modify_contact
     elsif user_input == 6
+      delete_contact
+    elsif user_input == 7
       puts "\e[H\e[2J"
       return
     else 
       puts "Invalid entry."
+      modify_contact_attribute
     end
   end
 
   def modify_first_name
     puts "Enter new first name:"
     new_first_name = gets.chomp.to_s
-    puts "Confirm (Y/N):"
+    puts "Confirm(Y/N):"
     user_input = gets.chomp.to_s.downcase
     if user_input == "y"
       @contacts.each do |contact|
@@ -90,7 +93,7 @@ class Rolodex
   def modify_last_name
     puts "Enter new last name:"
     new_last_name = gets.chomp.to_s
-    puts "Confirm (Y/N):"
+    puts "Confirm(Y/N):"
     user_input = gets.chomp.to_s.downcase
     if user_input == "y"
       @contacts.each do |contact|
@@ -113,7 +116,7 @@ class Rolodex
   def modify_email
     puts "Enter new email:"
     new_email = gets.chomp.to_s
-    puts "Confirm (Y/N):"
+    puts "Confirm(Y/N):"
     user_input = gets.chomp.to_s.downcase
     if user_input == "y"
       @contacts.each do |contact|
@@ -137,7 +140,7 @@ class Rolodex
   def modify_notes
     puts "Enter new notes:"
     new_notes = gets.chomp.to_s
-    puts "Confirm (Y/N):"
+    puts "Confirm(Y/N):"
     user_input = gets.chomp.to_s.downcase
     if user_input == "y"
       @contacts.each do |contact|
@@ -159,9 +162,30 @@ class Rolodex
   end
   
   def display_all_contacts
+    puts "All contacts\n------------"
     @contacts.each do |contact|
       puts contact
     end
     puts ""
   end
+
+  def display_contacts_by_attribute
+  end
+
+  def delete_contact 
+    puts "Delete this contact(Y/N):"
+    user_input = gets.chomp.to_s.downcase
+    if user_input == "y"
+      @contacts.delete_if{|c| c.id==@id} #look up
+      puts "\e[H\e[2J" 
+      puts "\nContact deleted...\n\n"
+      sleep (0.4)
+    elsif user_input =="n"
+      modify_contact_attribute
+    else
+      puts "Invalid entry."
+      modify_contact_attribute
+    end
+  end
+
 end

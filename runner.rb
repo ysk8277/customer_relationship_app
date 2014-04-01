@@ -27,9 +27,8 @@ class Runner
     puts "2. Modify an existing contact"
     puts "3. Display all contacts"
     puts "4. Display all contacts by attribute"
-    puts "5. Delete a contact"
-    puts "6. Exit CRM\n\n"
-    puts "Press 1-6 to continue:" 
+    puts "5. Exit CRM\n\n"
+    puts "Press 1-5 to continue:" 
   end
 
   def run
@@ -51,14 +50,11 @@ class Runner
         display_contacts_by_attribute
       elsif user_input == 5
         puts "\e[H\e[2J"
-        delete_contact
-      elsif user_input == 6
-        puts "\e[H\e[2J"
         puts "\n\nGood Bye!\n\n"
         done = true
       else 
         puts "\e[H\e[2J"
-        puts "Invalid entry. Please select valid input(1-6).\n\n"
+        puts "Invalid entry. Please select valid input(1-5).\n\n"
       end
     end
   end
@@ -85,9 +81,6 @@ class Runner
   
   def display_contacts_by_attribute
     @rolodex.display_contacts_by_attribute
-  end
-  
-  def delete_contact
   end
 end
 
