@@ -1,18 +1,3 @@
-=begin
-*methods- add, modify, display all, display contact, 
-          display all, display attributes, delete, exit.
-*attributes- firstname,lastname,email,notes
-*add- add firstname,lastname,email,notes.
-*modify- promt y/n to confirm; if yes, promt to
-        choose which attributes to change (id,name,email,note), 
-        promt to enter new value, if no back to main_menu.
-*display all- show all contacts.
-*diplay attributes- promt to choose attributes and
-                  show contacts by chosen attribute.
-*delete- promt to delete attribute value of the contact.
-*exit- exit out of program
-*puts "\e[H\e[2j" - clear
-=end
 require './rolodex'
 require './contact'
 
@@ -22,7 +7,7 @@ class Runner
   end
 
   def main_menu
-    puts "--- CRM Main Menu ---\n\n"
+    puts "---- CRM Main Menu ----\n\n"
     puts "1. Add a new contact"
     puts "2. Modify an existing contact"
     puts "3. Display all contacts"
@@ -50,11 +35,14 @@ class Runner
         display_contacts_by_attribute
       elsif user_input == 5
         puts "\e[H\e[2J"
-        puts "\n\nGood Bye!\n\n"
+        sleep (0.2)
+        puts "\n---- Good Bye! ----\n\n"
         done = true
       else 
         puts "\e[H\e[2J"
+        sleep (0.2)
         puts "Invalid entry. Please select valid input(1-5).\n\n"
+        sleep (0.2)
       end
     end
   end
@@ -67,7 +55,7 @@ class Runner
     puts "Enter customer's email:"
     email = gets.chomp
     puts "Enter notes:"
-    notes = gets.chomp
+    notes = gets.chomp.to_s
     @rolodex.create_contact(first_name, last_name, email, notes)
   end
   
@@ -87,4 +75,3 @@ end
 crm = Runner.new
 puts "\e[H\e[2J"
 crm.run
-

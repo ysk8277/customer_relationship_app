@@ -13,7 +13,7 @@ class Rolodex
     @contacts << contact
     puts "\e[H\e[2J"
     puts contact
-    sleep (0.4)
+    sleep (0.2)
     puts "\nNew contact created...\n\n"
   end
   
@@ -25,6 +25,7 @@ class Rolodex
       if contact.id == @id
         puts "\e[H\e[2J"
         puts "Current values:"
+        sleep (0.2)
         puts contact
         modify_contact_attribute 
         return #ends method with last value       
@@ -61,14 +62,16 @@ class Rolodex
       puts "\e[H\e[2J"
       return
     else 
+      sleep (0.2)
       puts "Invalid entry."
+      sleep (0.2)
       modify_contact_attribute
     end
   end
 
   def modify_first_name
     puts "Enter new first name:"
-    new_first_name = gets.chomp.to_s
+    new_first_name = gets.chomp.to_s.downcase.capitalize
     puts "Confirm(Y/N):"
     user_input = gets.chomp.to_s.downcase
     if user_input == "y"
@@ -77,6 +80,7 @@ class Rolodex
           contact.first_name = new_first_name
           puts "\e[H\e[2J"
           puts "New values:"
+          sleep (0.2)
           puts contact
           modify_contact_attribute
         end
@@ -92,7 +96,7 @@ class Rolodex
   
   def modify_last_name
     puts "Enter new last name:"
-    new_last_name = gets.chomp.to_s
+    new_last_name = gets.chomp.to_s.downcase.capitalize
     puts "Confirm(Y/N):"
     user_input = gets.chomp.to_s.downcase
     if user_input == "y"
@@ -101,6 +105,7 @@ class Rolodex
           contact.last_name = new_last_name
           puts "\e[H\e[2J"
           puts "New values:"
+          sleep (0.2)
           puts contact
           modify_contact_attribute
         end
@@ -124,6 +129,7 @@ class Rolodex
           contact.email = new_email
           puts "\e[H\e[2J"
           puts "New values:"
+          sleep (0.2)
           puts contact
           modify_contact_attribute
         end
@@ -148,6 +154,7 @@ class Rolodex
           contact.notes = new_notes
           puts "\e[H\e[2J"
           puts "New values:"
+          sleep (0.2)
           puts contact
           modify_contact_attribute
         end
@@ -160,7 +167,24 @@ class Rolodex
       modify_contact_attribute
     end
   end
-  
+
+  def delete_contact 
+    puts "Delete this contact(Y/N):"
+    user_input = gets.chomp.to_s.downcase
+    if user_input == "y"
+      @contacts.delete_if{|c| c.id==@id} #look up
+      puts "\e[H\e[2J" 
+      sleep (0.2)
+      puts "\nContact deleted...\n\n"
+      sleep (0.2)
+    elsif user_input =="n"
+      modify_contact_attribute
+    else
+      puts "Invalid entry."
+      modify_contact_attribute
+    end
+  end
+
   def display_all_contacts
     puts "All contacts\n------------"
     @contacts.each do |contact|
@@ -170,22 +194,6 @@ class Rolodex
   end
 
   def display_contacts_by_attribute
-  end
-
-  def delete_contact 
-    puts "Delete this contact(Y/N):"
-    user_input = gets.chomp.to_s.downcase
-    if user_input == "y"
-      @contacts.delete_if{|c| c.id==@id} #look up
-      puts "\e[H\e[2J" 
-      puts "\nContact deleted...\n\n"
-      sleep (0.4)
-    elsif user_input =="n"
-      modify_contact_attribute
-    else
-      puts "Invalid entry."
-      modify_contact_attribute
-    end
   end
 
 end
