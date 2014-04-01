@@ -24,11 +24,10 @@ def initialize
   @last_name = ""
   @notes = ""
   @email = ""
-
 end
 
 def to_s
-  "ID: #{@id}\nFirst Name: #{@first_name}\nLast Name: #{@last_name}\nEmail: #{@email}\nNotes: #{@notes}\n\n"
+  "\nID: #{@id}\nFirst Name: #{@first_name}\nLast Name: #{@last_name}\nEmail: #{@email}\nNotes: #{@notes}"
 end
 
 def self.get_id

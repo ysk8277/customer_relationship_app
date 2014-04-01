@@ -22,33 +22,40 @@ class Runner
   end
 
   def main_menu
-    puts "\nCRM Main Menu:\n\n"
-    puts "1. Add a new contact."
-    puts "2. Modify an existing contact."
-    puts "3. Display all contacts."
-    puts "4. Display all contacts by attribute."
-    puts "5. Delete a contact."
-    puts "6. Exit.\n\n" 
+    puts "--- CRM Main Menu ---\n\n"
+    puts "1. Add a new contact"
+    puts "2. Modify an existing contact"
+    puts "3. Display all contacts"
+    puts "4. Display all contacts by attribute"
+    puts "5. Delete a contact"
+    puts "6. Exit.\n\n"
+    puts "Press 1-6 to continue:" 
   end
 
   def run
-    done = true
-    while done == true
+    done = false
+    while done !=true
       main_menu
       user_input = gets.chomp.to_i
       if user_input == 1
+        puts "\e[H\e[2J"
         add_contact
       elsif user_input == 2
+        puts "\e[H\e[2J"
         modify_contact
       elsif user_input == 3
+        puts "\e[H\e[2J"
         display_all_contacts
       elsif user_input == 4
+        puts "\e[H\e[2J"
         display_contacts_by_attribute
       elsif user_input == 5
+        puts "\e[H\e[2J"
         delete_contact
       elsif user_input == 6
-        puts "\nGood Bye!\n\n"
-        done = false
+        puts "\e[H\e[2J"
+        puts "\n\nGood Bye!\n\n"
+        done = true
       else 
         puts "Invalid entry. Please select valid input(1-6)."
       end
@@ -64,7 +71,7 @@ class Runner
     email = gets.chomp
     puts "Enter notes:"
     notes = gets.chomp
-    @rolodex.create_contact(first_name, last_name, email, notes) 
+    @rolodex.create_contact(first_name, last_name, email, notes)
   end
   
   def modify_contact
@@ -84,5 +91,6 @@ class Runner
 end
 
 crm = Runner.new
+puts "\e[H\e[2J"
 crm.run
 
